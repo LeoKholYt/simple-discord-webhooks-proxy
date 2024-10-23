@@ -93,7 +93,7 @@ export function Homepage() {
 
         <div className="flex flex-col items-center space-y-4">
           <a
-            href="https://vercel.com/new/clone?repository-url=https://github.com/your-repo/webhook-proxy"
+            href="https://vercel.com/new/clone?repository-url=https://github.com/star-ot/simple-discord-webhooks-proxy"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 bg-black text-white rounded-full font-semibold hover:bg-gray-800 transition-colors"
@@ -102,7 +102,7 @@ export function Homepage() {
             Deploy on Vercel
           </a>
           <a
-            href="https://github.com/your-repo"
+            href="https://github.com/star-ot/simple-discord-webhooks-proxy"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center px-6 py-3 bg-white text-purple-600 rounded-full font-semibold hover:bg-opacity-90 transition-colors"
