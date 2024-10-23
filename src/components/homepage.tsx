@@ -113,7 +113,7 @@ export function Homepage() {
         </div>
       </div>
       <footer className="mt-8 text-sm text-white/70 flex items-center justify-center">
-        <span className="mr-1">Inspired by Lewisakura's </span>
+        <span className="mr-1">Inspired by Lewisakura&apos;s </span>
         <a href="https://github.com/lewisakura/webhook-proxy" className="hover:underline mr-4">Webhook Proxy</a>
         <span>Made with ❤️ by <a target = "_blank" href="https://starvsk.dev">StarVSK</a></span>
       </footer>
