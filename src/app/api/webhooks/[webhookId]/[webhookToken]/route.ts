@@ -12,16 +12,6 @@ export async function POST(
     
     const body = await request.json()
 
-    // add guard statements for body content and webhookId/webhookToken
-    if (!body.content) {
-        return new Response(JSON.stringify({ error: 'Content is required' }), {
-            status: 400,
-            headers: {
-                'content-type': 'application/json',
-            },
-        })
-    }
-
     if (!webhookId || !webhookToken) {
         return new Response(JSON.stringify({ error: 'Webhook ID and token are required' }), {
             status: 400,
