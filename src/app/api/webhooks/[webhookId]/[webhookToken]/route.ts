@@ -30,12 +30,20 @@ export async function POST(
           },
       });
 
-      // Construct headers to mirror those in the original response
       const responseHeaders = new Headers();
       for (const [key, value] of Object.entries(res.headers)) {
-          responseHeaders.set(key, value);
+          responseHeaders.set(key, value as string);
       }
 
+      // Return without body for 204 status
+      if (res.status === 204) {
+          return new Response(null, {
+              status: res.status,
+              headers: responseHeaders,
+          });
+      }
+
+      // Return with body for other statuses
       return new Response(JSON.stringify(res.data), {
           status: res.status,
           headers: responseHeaders,
