@@ -23,15 +23,31 @@ export async function POST(
 
     const discordWebhookUrl = `https://discord.com/api/webhooks/${webhookId}/${webhookToken}`
     
-    const res = await axios.post(discordWebhookUrl, body, {
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    })
-    
-    return new Response(JSON.stringify(res.data), {
-        headers: {
-            'content-type': 'application/json',
-        },
-    })
+    try {
+      const res = await axios.post(discordWebhookUrl, body, {
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
+
+      // Construct headers to mirror those in the original response
+      const responseHeaders = new Headers();
+      for (const [key, value] of Object.entries(res.headers)) {
+          responseHeaders.set(key, value);
+      }
+
+      return new Response(JSON.stringify(res.data), {
+          status: res.status,
+          headers: responseHeaders,
+      });
+
+  } catch (error) {
+      console.error('Error posting to Discord:', error);
+      return new Response(JSON.stringify({ error: 'Failed to post to Discord webhook' }), {
+          status: 500,
+          headers: {
+              'content-type': 'application/json',
+          },
+      });
+  }
 }
