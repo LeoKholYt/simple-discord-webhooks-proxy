@@ -8,7 +8,7 @@ export async function POST(
     const webhookId = (await params).webhookId // 'a', 'b', or 'c'
     const webhookToken = (await params).webhookToken // '123
 
-    console.log(webhookId, webhookToken)
+    // console.log(webhookId, webhookToken)
     
     const body = await request.json()
 
@@ -58,7 +58,7 @@ export async function POST(
 
       // Handle 429 and other error statuses with full headers
       return new Response(JSON.stringify(error.response.data), {
-        status: error.response.status,
+        status: 500,
         headers: responseHeaders,
       });
     } else {
