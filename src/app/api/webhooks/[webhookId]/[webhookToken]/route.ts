@@ -50,12 +50,25 @@ export async function POST(
       });
 
   } catch (error) {
-      console.error('Error posting to Discord:', error);
-      return new Response(JSON.stringify({ error: 'Failed to post to Discord webhook' }), {
+    if (axios.isAxiosError(error) && error.response) {
+      const responseHeaders = new Headers();
+      for (const [key, value] of Object.entries(error.response.headers)) {
+        responseHeaders.set(key, value as string);
+      }
+
+      // Handle 429 and other error statuses with full headers
+      return new Response(JSON.stringify(error.response.data), {
+        status: error.response.status,
+        headers: responseHeaders,
+      });
+    } else {
+        console.error('Unexpected error posting to Discord:', error);
+        return new Response(JSON.stringify({ error: 'Failed to post to Discord webhook' }), {
           status: 500,
           headers: {
-              'content-type': 'application/json',
+            'content-type': 'application/json',
           },
       });
-  }
+    }
+  } 
 }
