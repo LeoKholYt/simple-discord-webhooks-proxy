@@ -57,8 +57,8 @@ export async function POST(
       }
 
       // Handle 429 and other error statuses with full headers
-      return new Response(null, {
-        status: 205,
+      return new Response("yes", {
+        status: 204,
         headers: responseHeaders,
       });
     } else {
